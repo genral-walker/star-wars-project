@@ -5,6 +5,7 @@ import "./App.scss";
 import Hero from './Hero/Hero';
 import FilterBox from './FilterBox/FilterBox';
 import ResultCard from './ResultCard/ResultCard';
+import Footer from './Footer/Footer';
 
 
 export default function App() {
@@ -17,7 +18,6 @@ export default function App() {
         <h2>9ijakids Games Result</h2>
 
         <div className='results-box'>
-
           <div className='left'>
             <FilterBox />
           </div>
@@ -30,12 +30,10 @@ export default function App() {
             <ResultCard />
             <ResultCard />
           </div>
-
         </div>
-
       </section>
+      <Footer/>
     </>
-
 
   );
 }
