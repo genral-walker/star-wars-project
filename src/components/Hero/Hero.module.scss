@@ -15,7 +15,7 @@
   * {
     color: $color-light;
   }
-  @include media(550px) {
+  @include media(720px) {
     padding: {
       left: 2rem;
       right: 2rem;
@@ -67,6 +67,9 @@
     cursor: text;
     &::placeholder {
       font-size: 1rem;
+      @include media(350px) {
+        font-size: .8rem;
+       }
     }
   }
 

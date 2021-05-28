@@ -25,8 +25,6 @@ const FilterBox = () => {
                 <label for="Key Stage 1"> Level 1</label>
                 <input type="checkbox" id="Key Stage 2" name="Key Stage 2" value="Key Stage 2" />
                 <label for="Key Stage 2"> Level 2</label>
-                <input type="checkbox" id="Financial Literacy" name="Financial Literacy" value="Financial Literacy" />
-                <label for="Financial Literacy"> Level 3</label>
             </div>
         </div>
     )

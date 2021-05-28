@@ -16,15 +16,21 @@ export default function App() {
       <section className='main'>
         <h2>9ijakids Games Result</h2>
 
-        <FilterBox /> 
-
         <div className='results-box'>
-          <ResultCard />
-          <ResultCard />
-          <ResultCard />
-          <ResultCard />
-          <ResultCard />
-          <ResultCard />
+
+          <div className='left'>
+            <FilterBox />
+          </div>
+
+          <div className='right'>
+            <ResultCard />
+            <ResultCard />
+            <ResultCard />
+            <ResultCard />
+            <ResultCard />
+            <ResultCard />
+          </div>
+
         </div>
 
       </section>

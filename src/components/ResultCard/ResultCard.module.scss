@@ -1,5 +1,48 @@
 @import "../../assets/scss/main.scss";
 
 .card {
-    
+  flex: 0 0 31%;
+  height: 30rem;
+  margin-bottom: 3rem;
+  background: $color-light;
+  overflow: hidden;
+  border-radius: 7px;
+  box-shadow: 2px 2px 9px rgba($color-primary, 0.3);
+  @include media(950px) {
+    flex: 0 0 47%;
+  }
+  @include media(720px) {
+    flex: 0 0 31%;
+   }
+   @include media(650px) {
+    flex: 0 0 47%;
+   }
+   @include media(425px) {
+    flex: 0 0 100%;
+   }
+}
+
+.imageBody {
+  height: 60%;
+  width: 100%;
+
+  img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.content {
+  padding: 1.7rem 1rem;
+  text-align: left;
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-top: 1.4rem;
+  }
 }

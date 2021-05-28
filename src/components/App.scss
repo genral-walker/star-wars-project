@@ -1,5 +1,4 @@
-
-@import '../assets/scss/main.scss';
+@import "../assets/scss/main.scss";
 
 *,
 *::before,
@@ -11,9 +10,8 @@
   box-sizing: inherit;
 }
 
-
 html {
-//////// MAX-WIDTH RULES -- IN DESCENDING ORDER ////////
+  //////// MAX-WIDTH RULES -- IN DESCENDING ORDER ////////
   @include media(1800px) {
     font-size: 100%;
   }
@@ -21,9 +19,9 @@ html {
     font-size: 93.75%;
   }
 
-// ORIGINAL SCREEN SIZE
+  // ORIGINAL SCREEN SIZE
   font-size: 81.25%; //13px == 1rem
-  
+
   //////// MAX-WIDTH RULES -- IN DESCENDING ORDER ////////
   @include media(1280px) {
     font-size: 68.75%;
@@ -33,9 +31,8 @@ html {
   }
 }
 
-
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: border-box;
   overflow-x: hidden;
   color: $color-primary-dark;
@@ -68,7 +65,7 @@ textarea {
 }
 
 .main {
-  padding: 4rem 3rem;
+  padding: 4.5rem 0;
 
   h2 {
     text-transform: uppercase;
@@ -76,10 +73,31 @@ textarea {
     letter-spacing: 2px;
     text-align: center;
     font-size: 2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
   }
 
   .results-box {
     width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    
+    @include media(720px) {
+     @include flex-column;
+    }
+
+    .left {
+      margin-left: 3rem;
+      grid-column: 1 / 2;
+      @include media(320px) {
+        margin-left: 2.5rem;
+       }
+    }
+
+    .right {
+      grid-column: 2 / -1;
+      padding: 0 3rem;
+      @include flex-between;
+     
+    }
   }
 }

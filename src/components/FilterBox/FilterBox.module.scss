@@ -4,6 +4,9 @@
     width: max-content;
     padding: .2rem 1rem 1.5rem;
     box-shadow: 2px 2px 9px -1px rgba($color-primary, .4);
+    @include media(720px) {
+        margin-bottom: 4rem;
+       }
 
     p {
         font-size: 1.3rem;
@@ -18,5 +21,6 @@
         text-transform: uppercase;
         transform: translateY(-2px);
         margin: 0 13px 0 5px;
+        cursor: pointer;
     }
 }
