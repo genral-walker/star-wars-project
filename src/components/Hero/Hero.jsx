@@ -12,7 +12,7 @@ const Hero = () => {
 
             <form className={styles.searchBox}>
                 <input type='search' placeholder='Search for Games by Topic' />
-                <button type="button">
+                <button type="submit">
                     Search
                 </button>
             </form>
