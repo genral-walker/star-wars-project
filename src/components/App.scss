@@ -1,0 +1,78 @@
+
+@import '../assets/scss/main.scss';
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  letter-spacing: 1px;
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+
+html {
+//////// MAX-WIDTH RULES -- IN DESCENDING ORDER ////////
+  @include media(1800px) {
+    font-size: 100%;
+  }
+  @include media(1600px) {
+    font-size: 93.75%;
+  }
+
+// ORIGINAL SCREEN SIZE
+  font-size: 81.25%; //13px == 1rem
+  
+  //////// MAX-WIDTH RULES -- IN DESCENDING ORDER ////////
+  @include media(1280px) {
+    font-size: 68.75%;
+  }
+  @include media(1100px) {
+    font-size: 62.5%;
+  }
+}
+
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  color: $color-primary-dark;
+}
+
+a {
+  text-decoration: none;
+  color: currentColor;
+}
+
+li {
+  list-style: none;
+}
+
+button,
+input,
+textarea {
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  &:active,
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+textarea {
+  cursor: text;
+}
+
+.main {
+  padding: 4rem 3rem;
+
+  h2 {
+    text-transform: uppercase;
+    font-weight: 400;
+    text-align: center;
+  }
+}

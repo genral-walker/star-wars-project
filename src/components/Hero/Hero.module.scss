@@ -1,0 +1,80 @@
+@import "../../assets/scss/main.scss";
+
+.body {
+  background: linear-gradient(
+      rgba($color-black, 0.764),
+      rgba($color-black, 0.731)
+    ),
+    url(../../assets/images/hero-bg.jpg) no-repeat center fixed;
+  background-size: cover;
+  text-align: center;
+  padding: {
+    top: 4rem;
+    bottom: 4rem;
+  }
+  * {
+    color: $color-light;
+  }
+  @include media(550px) {
+    padding: {
+      left: 2rem;
+      right: 2rem;
+    }
+  }
+
+
+
+  h1 {
+    font-size: 6rem;
+    font-weight: 400;
+    @include media(480px) {
+      font-size: 5.3rem;
+    }
+  }
+
+  h3 {
+    font-size: 2rem;
+    margin-top: 1.5rem;
+    @include media(550px) {
+        margin: 2.5rem 0;
+      }
+  }
+}
+
+
+
+.searchBox {
+  margin: 3.5rem auto 0;
+  background: $color-light;
+  width: 35rem;
+  height: 3.5rem;
+  padding: 0 1rem;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  * {
+    color: $color-primary-dark;
+    font-size: 1.1rem;
+  }
+  @include media(425px) {
+    width: 75%;
+  }
+
+  input {
+    flex: 0 0 82%;
+    height: 100%;
+    cursor: text;
+    &::placeholder {
+      font-size: 1rem;
+    }
+  }
+
+  button {
+    height: 100%;
+    right: 0;
+    padding: 0 1rem;
+    position: absolute;
+    background: rgb(185, 185, 202);
+  }
+}
