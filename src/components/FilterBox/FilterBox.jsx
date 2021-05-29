@@ -6,7 +6,9 @@ import styles from './FilterBox.module.scss';
 const FilterBox = () => {
 
     const filterSearch = event => {
-        console.log(event)
+       if (event.target.nodeName === 'INPUT' && event.target.checked) {
+        console.log(event.target.value)
+       }
     };
 
     return (

@@ -49,8 +49,6 @@
   width: 35rem;
   height: 3.5rem;
   padding: 0 1rem;
-  display: flex;
-  position: relative;
   overflow: hidden;
   border-radius: 4px;
   * {
@@ -62,7 +60,7 @@
   }
 
   input {
-    flex: 0 0 82%;
+    width: 100%;
     height: 100%;
     cursor: text;
     &::placeholder {
@@ -73,11 +71,4 @@
     }
   }
 
-  button {
-    height: 100%;
-    right: 0;
-    padding: 0 1rem;
-    position: absolute;
-    background: rgb(185, 185, 202);
-  }
 }

@@ -1,21 +1,20 @@
 
 import React from 'react';
 import styles from './ResultCard.module.scss';
-import pic from '../../assets/images/hero-bg.jpg';
 
 
 
-const ResultCard = ({ }) => {
+const ResultCard = ({ GameImage, GameTitle, GameDescription }) => {
 
     return (
         <div className={styles.card}>
             <div className={styles.imageBody}>
-                <img src={pic} alt='picture' />
+                <img src={GameImage} alt={GameTitle} />
             </div>
 
             <div className={styles.content}>
-                <h3>This is A SubTitle</h3>
-                <p>Communication Yr 2 (different ways we can communicate)</p>
+                <h3>{GameTitle}</h3>
+                <p>{GameDescription}</p>
             </div>
         </div>
     )

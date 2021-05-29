@@ -3,23 +3,15 @@
 .card {
   flex: 0 0 31%;
   height: 30rem;
-  margin-bottom: 3rem;
   background: $color-light;
   overflow: hidden;
   border-radius: 7px;
   box-shadow: 2px 2px 9px rgba($color-primary, 0.3);
-  @include media(950px) {
-    flex: 0 0 47%;
+  transition: .4s;
+  @include media(hover) {
+    background: rgba($color-primary, .2);
+    transform: translateY(-5px);
   }
-  @include media(720px) {
-    flex: 0 0 31%;
-   }
-   @include media(650px) {
-    flex: 0 0 47%;
-   }
-   @include media(425px) {
-    flex: 0 0 100%;
-   }
 }
 
 .imageBody {
@@ -27,7 +19,6 @@
   width: 100%;
 
   img {
-    object-fit: cover;
     height: 100%;
     width: 100%;
   }
