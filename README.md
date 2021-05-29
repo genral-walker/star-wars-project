@@ -1,12 +1,11 @@
-# Getting Started with Create React App
+# 9ijakids Game List
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+View the [solution to the task here](https://9ijakidstask.netlify.app).
 
-## Available Scripts
+This project was built with:
 
-In the project directory, you can run:
+- React
+- SCSS
+- JavaScript
+- CSS Module
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
