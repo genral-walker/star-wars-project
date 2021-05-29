@@ -3,17 +3,11 @@ import React from 'react';
 import styles from './FilterBox.module.scss';
 
 
-const FilterBox = () => {
-
-    const filterSearch = event => {
-       if (event.target.nodeName === 'INPUT' && event.target.checked) {
-        console.log(event.target.value)
-       }
-    };
+const FilterBox = ({filterCatalogue}) => {
 
     return (
-        <div className={styles.body} onClick={filterSearch}>
-            <div>
+        <div className={`${styles.body} filter-box`} onClick={filterCatalogue}>
+            <div id='Group'>
                 <p>Filter by Groups</p>
                 <input type="checkbox" id="Academic" name="Academic" value="Academic" />
                 <label for="Academic"> Academic</label>
@@ -21,7 +15,7 @@ const FilterBox = () => {
                 <label for="Financial Literacy"> Financial Literacy</label>
             </div>
 
-            <div>
+            <div id='Level'>
                 <p>Filter by Levels</p>
                 <input type="checkbox" id="Key Stage 1" name="Key Stage 1" value="Key Stage 1" />
                 <label for="Key Stage 1"> Level 1</label>

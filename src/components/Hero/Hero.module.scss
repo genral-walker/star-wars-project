@@ -63,6 +63,7 @@
     width: 100%;
     height: 100%;
     cursor: text;
+    font-size: 1.2rem;
     &::placeholder {
       font-size: 1rem;
       @include media(350px) {
