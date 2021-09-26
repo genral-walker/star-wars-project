@@ -6,12 +6,12 @@ import styles from './Footer.module.scss';
 const Footer = () => {
 
     const date = () => {
-        const date = new Date; return date.getFullYear()
+        const date = new Date(); return date.getFullYear()
     };
 
     return (
         <footer className={styles.foot}>
-            &copy; Copyright 9ijakids {date()}
+            &copy; Lukman Star Wars {date()}
         </footer>
     )
 };

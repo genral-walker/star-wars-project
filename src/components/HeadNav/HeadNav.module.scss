@@ -1,0 +1,66 @@
+@import "../../assets/scss/main.scss";
+
+.nav {
+  background: $color-light;
+  color: $color-dark;
+}
+
+
+
+.accordion {
+  cursor: pointer;
+  padding: 1rem 4rem;
+  border: 1px solid red;
+  @include flex-between;
+  text-transform: uppercase;
+
+  span {
+    width: 3px;
+    height: 13px;
+    position: relative;
+    background: $color-dark;
+    transform: rotate(90deg);
+
+    &::after {
+      position: absolute;
+      content: "";
+      left: 0;
+      width: inherit;
+      height: inherit;
+      background: inherit;
+      transform: inherit;
+      transition: transform 0.3s ease-out;
+    }
+
+    /* CLASSLIST */
+    &.hide::after {
+      transform: rotate(0);
+    }
+  }
+}
+
+
+
+.contents {
+  overflow: hidden;
+  height: 0;
+  transition: height 0.6s;
+
+  ul {
+    li {
+      padding: 1rem 4rem;
+      border: 1px solid red;
+      font-size: 1.4rem;
+      font-weight: bold;
+      text-transform: capitalize;
+      cursor: pointer;
+      transition: .4s;
+
+      &:hover,
+      &.active {
+        background: $color-dark;
+        color: $color-light;
+      }
+    }
+  }
+}

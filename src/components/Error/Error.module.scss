@@ -1,0 +1,30 @@
+
+@import '../../assets/scss/main.scss';
+
+.body {
+    @include flex-center;
+    flex-wrap: wrap;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1.5rem 0;
+
+    p {
+        color: red;
+    }
+
+    button {
+        padding: 1rem 1rem;
+        border: 1px solid $color-light;
+        font-size: 1.5rem;
+        background: $color-dark;
+        font-weight: bold;
+        color: $color-light;
+        margin-left: 1rem;
+        cursor: pointer;
+        outline: none;
+
+        &:active {
+            transform: scale(.98) translateY(2px);
+        }
+    }
+}

@@ -1,0 +1,26 @@
+@import "../../assets/scss/main.scss";
+
+.loader {
+  padding: 2rem;
+  background: $color-dark;
+  @include flex-center;
+  height: 10rem;
+
+  div {
+    border: 5px solid $color-light;
+    border-bottom: 5px solid $color-dark;
+    border-radius: 100%;
+    background: $color-dark;
+    padding: 2rem;
+    animation: rotate 1s linear infinite;
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}

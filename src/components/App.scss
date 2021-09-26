@@ -6,7 +6,6 @@
   margin: 0;
   padding: 0;
   letter-spacing: 1px;
-  -webkit-box-sizing: inherit;
   box-sizing: inherit;
 }
 
@@ -35,7 +34,8 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: border-box;
   overflow-x: hidden;
-  color: $color-primary-dark;
+  background: $color-dark;
+  color: $color-light;
 }
 
 a {
@@ -47,70 +47,11 @@ li {
   list-style: none;
 }
 
-button,
-input,
-textarea {
-  border: none;
-  background-color: inherit;
-  cursor: pointer;
-  &:active,
-  &:focus {
-    border: none;
-    outline: none;
-  }
-}
 
-textarea {
-  cursor: text;
-}
+
 
 .main {
   padding: 4.5rem 0;
+  border: 1px solid red;
 
-  h2 {
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 2px;
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 3.5rem;
-  }
-
-  .results-box {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-
-    @include media(720px) {
-      @include flex-column;
-    }
-
-    .left {
-      margin-left: 3rem;
-      grid-column: 1 / 2;
-      @include media(320px) {
-        margin-left: 2.5rem;
-      }
-    }
-
-    .right {
-      grid-column: 2 / -1;
-      padding: 0 3rem;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 3rem;
-      @include media(1024px) {
-        grid-template-columns: 1fr 1fr;
-      }
-      @include media(768px) {
-        column-gap: 2rem;
-      }
-      @include media(720px) {
-        gap: 3rem;
-      }
-      @include media(425px) {
-        grid-template-columns: 1fr;
-      }
-    }
-  }
 }
