@@ -30,6 +30,7 @@ const HeadNav = () => {
 
         if (data || error) {
             if (data) {
+                // This doesn't do much. API already arranged the data according to earliest to newest... Just in case though.
                 const sortedData = data.results.sort((a, b) => Number(a.release_date.match(/\d\d\d\d/)[0]) - Number(b.release_date.match(/\d\d\d\d/)[0]));
 
                 return sortedData.map(data => {
