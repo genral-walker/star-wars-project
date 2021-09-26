@@ -7,7 +7,7 @@ import styles from './HeadNav.module.scss';
 
 
 const HeadNav = () => {
-    
+
     const [refetch, setRefetch] = useState(0);
     const listRef = useRef();
     const [accordion, setAccordion] = useState(false);
@@ -27,9 +27,15 @@ const HeadNav = () => {
 
 
     const returnMovies = () => {
+
         if (data || error) {
             if (data) {
-                return data.results.map(data => <li key={data.episode_id}>{data.title}</li>)
+                const sortedData = data.results.sort((a, b) => Number(a.release_date.match(/\d\d\d\d/)[0]) - Number(b.release_date.match(/\d\d\d\d/)[0]));
+
+                return sortedData.map(data => {
+                    return <li key={data.episode_id}>{data.title}</li>
+                })
+
             } else {
                 return <Error error={error} runOnClickFunc={() => setRefetch(prev => prev + 1)} />
             }
@@ -37,6 +43,7 @@ const HeadNav = () => {
             return <Loader />
         }
     }
+
 
 
     return (
