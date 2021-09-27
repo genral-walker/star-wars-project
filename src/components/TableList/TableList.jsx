@@ -10,16 +10,14 @@ import styles from './TableList.module.scss';
 
 const TableList = () => {
     const movieSelected = useSelector(state => state.movie.movieSelected);
-    const [data, error] = useFetch(movieSelected.characters, 0)
+    const [refetch, setRefetch] = useState(0);
+    const [data, error] = useFetch(movieSelected.characters, refetch)
 
-    const [urlArray, setUrlArray] = useState([]);
     const [charactersArr, setCharactersArr] = useState([]);
 
 
     useEffect(() => {
-        // RESET DATA TO ACCOMODATE NEW MOVIE TO SELECT
-        setUrlArray([]);
-
+        setRefetch(prev => prev + 1);
 
 
         // SET NEW URL ARRAY BASED ON SELECTED MOVIE
