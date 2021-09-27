@@ -1,7 +1,7 @@
 
 import movieActionTypes from './movieActionTypes'
 
-export const addToCart = movieID => ({
-    type: movieActionTypes.MOVIE_ADDED,
-    payload: movieID
+export const selectMovie = movie => ({
+    type: movieActionTypes.MOVIE_SELECTED,
+    payload: movie
 });

@@ -1,4 +1,2 @@
 
-export const selectMovie = () => {
-
-}
+export const selectMovie = movie => movie;

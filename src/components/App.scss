@@ -49,12 +49,19 @@ li {
 
 
 
+
 .main {
   padding: 4rem 4rem 0;
+  @include media(500px) {
+    padding: 4rem 1.5rem 0;
+  }
+  @include media(370px) {
+    padding: 4rem 1rem 0;
+  }
+
 
 
   .logo {
-    border: 1px solid green;
     height: 100%;
     text-align: center;
 
@@ -66,59 +73,4 @@ li {
     }
   }
 
-
-  .open-crawl {
-    marquee {
-      height: 18rem;
-      font-size: 2.5rem;
-      text-align: center;
-    }
-  }
-
-
-
-  .list {
-
-    .select {
-      margin: 2rem 0;
-      label {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-right: 1rem;
-      }
-
-      select {
-        background: $color-dark;
-        color: $color-light;
-        padding: .5rem 0;
-        outline: none;
-        border: 1px solid $color-light;
-      }
-    }
-
-
-
-    table {
-      border-collapse: collapse;
-      background: $color-light;
-      width: 100%;
-      text-align: left;
-      & * {
-        color: $color-dark;
-        padding: 1rem 0 1rem 1rem;
-      }
-      th {
-        border: 1px solid $color-dark;
-        font-size: 1.5rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-      }
-
-      td {
-        border: 1px solid $color-dark;
-        font-size: 1.5rem;
-        font-weight: 600;
-      }
-    }
-  }
 }

@@ -1,19 +1,21 @@
 
 import movieActionTypes from './movieActionTypes';
-import { } from './movieUtils';
+import { selectMovie } from './movieUtils';
 
 
 const INITIAL_STATE = {
-    movieSelected: ''
+    movieSelected: '',
+    charactersList: {},
+
 };
 
 const movieReducer = (state = INITIAL_STATE, { type, payload }) => {
 
     switch (type) {
-        case movieActionTypes.MOVIE_ADDED:
+        case movieActionTypes.MOVIE_SELECTED:
             return {
                 ...state,
-                movieSelected: selectMovie()
+                movieSelected: selectMovie(payload)
             }
         default:
             return state

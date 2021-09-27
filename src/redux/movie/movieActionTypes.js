@@ -1,6 +1,6 @@
 
 const movieActionTypes = {
-    'MOVIE_ADDED': 'MOVIE_ADDED'
+    'MOVIE_SELECTED': 'MOVIE_SELECTED'
 };
 
 export default movieActionTypes;
