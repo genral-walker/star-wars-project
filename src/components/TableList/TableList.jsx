@@ -17,31 +17,40 @@ const TableList = () => {
 
 
     useEffect(() => {
-        setRefetch(prev => prev + 1);
+        // THIS ENABLES THE API CALL AGAIN WHENEVR SELECTED MOVIE CHNAGES
+        if (data || error) {
+            setRefetch(prev => prev + 1);
+        }
 
 
         // SET NEW URL ARRAY BASED ON SELECTED MOVIE
-        if (movieSelected && !charactersArr.includes(movieSelected)) {
-            // console.log(movieSelected)
-            setCharactersArr(prev => {
-                return [
-                    ...prev,
-                    movieSelected
-                ]
-            })
+        // if (movieSelected && !charactersArr.includes(movieSelected)) {
+        //     // console.log(movieSelected)
+        //     setCharactersArr(prev => {
+        //         return [
+        //             ...prev,
+        //             movieSelected
+        //         ]
+        //     })
 
-        }
+        // }
     }, [movieSelected])
 
-
     useEffect(() => {
-
-        if (charactersArr.length) {
-            const data = charactersArr.find(()=> charactersArr.includes(movieSelected));
-            // console.log(data)
+        if (data || error) {
+            console.log(data, error)
         }
-      
-    }, [charactersArr])
+    }, [data, error])
+
+
+    // useEffect(() => {
+
+    //     if (charactersArr.length) {
+    //         const data = charactersArr.find(()=> charactersArr.includes(movieSelected));
+    //         // console.log(data)
+    //     }
+
+    // }, [charactersArr])
 
 
     // useEffect(() => {
