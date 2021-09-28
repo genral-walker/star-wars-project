@@ -9,13 +9,26 @@ import styles from './TableList.module.scss';
 const TableList = () => {
     const movieSelected = useSelector(state => state.movie.movieSelected);
     const [refetch, setRefetch] = useState(0);
-    const [data, error] = useFetch(movieSelected.characters, refetch)
+    const [data, error] = useFetch(movieSelected.characters, refetch);
+    const [filteredGender, setFilteredGender] = useState();
 
 
-    const calculateTotalHeight = () => {
+    const filterByGender = value => {
         if (data) {
-            // FILTER OBJS FOR THOSE THTA HAVE NUMBERS FOR HEIGHT
-            const filteredForOnlyNumbers = data.filter(({ height }) => {
+            if (value === 'all') {
+                setFilteredGender(data)
+            } else {
+                const newCharacters = data.filter(({ gender }) => gender === value);
+                setFilteredGender(newCharacters);
+            }
+        }
+    }
+
+
+    const sumTotalHeight = () => {
+        if (filteredGender) {
+            // FILTER OBJS FOR THOSE THAT HAVE NUMBERS FOR HEIGHT
+            const filteredForOnlyNumbers = filteredGender.filter(({ height }) => {
                 const convertedHeight = +height;
 
                 if (Number.isInteger(convertedHeight)) {
@@ -26,29 +39,25 @@ const TableList = () => {
             // CALCULATE HEIGHT IN CM, INCHES, FEET
             const totalHeightInCM = filteredForOnlyNumbers.reduce((accum, { height }) => {
                 const convertedHeight = +height;
-                return accum + convertedHeight;
+                return accum + convertedHeight;    
             }, 0);
-            
-            // 170 cm (5ft/6.93in)
 
             // Convert cm to Feet
             // COnvert cm to Inches
             const totalHeightInFeet = (totalHeightInCM / 30.48).toFixed(1),
                 totalHeightInInches = (totalHeightInCM / 2.54).toFixed(2);
 
-
-
             return `${totalHeightInCM} cm (${totalHeightInFeet}ft/${totalHeightInInches}in)`
         }
+
     }
 
+
     const returnCharactersInfo = () => {
-        if (data || error) {
-            if (data) {
-
+        if (filteredGender || error) {
+            if (filteredGender) {
                 return (<>
-
-                    {data.map(({ name, gender, height }, idx) => {
+                    {filteredGender.map(({ name, gender, height }, idx) => {
                         return <tr key={idx}>
                             <td>{name}</td>
                             <td>{gender}</td>
@@ -58,9 +67,9 @@ const TableList = () => {
 
                     <tr>
                         <td>
-                            <span>Total Visible Characters:</span> {data.length}
+                            <span>Total Visible Characters:</span> {filteredGender.length}
                         </td>
-                        <td colSpan='2'> <span>Total heights:</span> {calculateTotalHeight()}</td>
+                        <td colSpan='2'> <span>Total heights:</span> {sumTotalHeight()}</td>
                     </tr>
                 </>)
             } else {
@@ -81,11 +90,16 @@ const TableList = () => {
     }, [movieSelected])
 
 
-    return (
+    useEffect(() => {
+        // SET FILTEREDGENDER (THIS IS WHAT WE WILL BE RENDERING FROM)
+        setFilteredGender(data)
+    }, [data])
 
+
+    return (
         <section className={styles.list}>
 
-            <div className={styles.select}>
+            <div className={styles.select} onChange={(e) => filterByGender(e.target.value)}>
                 <label for="pet-select">Select Gender:</label>
 
                 <select id="pet-select">

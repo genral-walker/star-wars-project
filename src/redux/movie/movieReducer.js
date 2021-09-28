@@ -1,12 +1,9 @@
 
 import movieActionTypes from './movieActionTypes';
-import { selectMovie } from './movieUtils';
 
 
 const INITIAL_STATE = {
     movieSelected: '',
-    charactersList: {},
-
 };
 
 const movieReducer = (state = INITIAL_STATE, { type, payload }) => {
@@ -15,13 +12,15 @@ const movieReducer = (state = INITIAL_STATE, { type, payload }) => {
         case movieActionTypes.MOVIE_SELECTED:
             return {
                 ...state,
-                movieSelected: selectMovie(payload)
+                movieSelected: payload
             }
-        // case movieActionTypes.MOVIE_SELECTED:
-        //     return {
-        //         ...state,
-        //         movieSelected: selectMovie(payload)
-        //     }
+
+        case movieActionTypes.MOVIE_FETCHED:
+            return {
+                ...state,
+                [`${payload.episode_id}`]: payload
+            }
+
         default:
             return state
 
