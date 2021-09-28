@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux';
 import useFetch from '../../hooks/useFetch/useFetch';
 import Error from '../Error/Error';
 import Loader from '../Loader/Loader';
-
-
 import styles from './TableList.module.scss';
 
 const TableList = () => {
@@ -13,7 +11,66 @@ const TableList = () => {
     const [refetch, setRefetch] = useState(0);
     const [data, error] = useFetch(movieSelected.characters, refetch)
 
-    const [charactersArr, setCharactersArr] = useState([]);
+
+    const calculateTotalHeight = () => {
+        if (data) {
+            // FILTER OBJS FOR THOSE THTA HAVE NUMBERS FOR HEIGHT
+            const filteredForOnlyNumbers = data.filter(({ height }) => {
+                const convertedHeight = +height;
+
+                if (Number.isInteger(convertedHeight)) {
+                    return convertedHeight;
+                }
+            });
+
+            // CALCULATE HEIGHT IN CM, INCHES, FEET
+            const totalHeightInCM = filteredForOnlyNumbers.reduce((accum, { height }) => {
+                const convertedHeight = +height;
+                return accum + convertedHeight;
+            }, 0);
+            
+            // 170 cm (5ft/6.93in)
+
+            // Convert cm to Feet
+            // COnvert cm to Inches
+            const totalHeightInFeet = (totalHeightInCM / 30.48).toFixed(1),
+                totalHeightInInches = (totalHeightInCM / 2.54).toFixed(2);
+
+
+
+            return `${totalHeightInCM} cm (${totalHeightInFeet}ft/${totalHeightInInches}in)`
+        }
+    }
+
+    const returnCharactersInfo = () => {
+        if (data || error) {
+            if (data) {
+
+                return (<>
+
+                    {data.map(({ name, gender, height }, idx) => {
+                        return <tr key={idx}>
+                            <td>{name}</td>
+                            <td>{gender}</td>
+                            {height === 'unknown' ? <td>{height}</td> : <td>{height} cm</td>}
+                        </tr>
+                    })}
+
+                    <tr>
+                        <td>
+                            <span>Total Visible Characters:</span> {data.length}
+                        </td>
+                        <td colSpan='2'> <span>Total heights:</span> {calculateTotalHeight()}</td>
+                    </tr>
+                </>)
+            } else {
+                return <tr><td colSpan='3'><Error error={error} runTryAgainFunc={() => setRefetch(prev => prev + 1)} /></td></tr>
+            }
+
+        } else {
+            return <tr> <td colSpan='3'><Loader /></td> </tr >
+        }
+    }
 
 
     useEffect(() => {
@@ -21,50 +78,7 @@ const TableList = () => {
         if (data || error) {
             setRefetch(prev => prev + 1);
         }
-
-
-        // SET NEW URL ARRAY BASED ON SELECTED MOVIE
-        // if (movieSelected && !charactersArr.includes(movieSelected)) {
-        //     // console.log(movieSelected)
-        //     setCharactersArr(prev => {
-        //         return [
-        //             ...prev,
-        //             movieSelected
-        //         ]
-        //     })
-
-        // }
     }, [movieSelected])
-
-    useEffect(() => {
-        if (data || error) {
-            console.log(data, error)
-        }
-    }, [data, error])
-
-
-    // useEffect(() => {
-
-    //     if (charactersArr.length) {
-    //         const data = charactersArr.find(()=> charactersArr.includes(movieSelected));
-    //         // console.log(data)
-    //     }
-
-    // }, [charactersArr])
-
-
-    // useEffect(() => {
-    //     if (data || error) {
-    //         if (data) {
-    //             setstate(prev => [...prev, data])
-
-    //         } else {
-    //             return <Error error={error} runOnClickFunc={() => setRefetch(prev => prev + 1)} />
-    //         }
-    //     } else {
-    //         return <Loader />
-    //     }
-    // }, [data, error])
 
 
     return (
@@ -78,31 +92,23 @@ const TableList = () => {
                     <option value="all">All</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
+                    <option value="hermaphrodite">Hermaphrodite</option>
                 </select>
             </div>
 
+            <div className={styles.tableContainer}>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Height</th>
+                    </tr>
 
+                    {returnCharactersInfo()}
 
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Gender</th>
-                    <th>Height</th>
-                </tr>
+                </table>
+            </div>
 
-                {/* <tr>
-                    <td>Sky Walker</td>
-                    <td>Male</td>
-                    <td>17cmn</td>
-                </tr> */}
-
-                <tr>
-                    <td colSpan='2'>
-                        <span>Total Visible Characters:</span> 8
-                    </td>
-                    <td> <span>sum of heights:</span> 170 cm (5ft/6.93in)</td>
-                </tr>
-            </table>
 
         </section>
     )

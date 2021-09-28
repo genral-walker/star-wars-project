@@ -9,16 +9,16 @@
     padding: 1.5rem 0;
 
     p {
-        color: red;
+        color: red !important;
     }
 
     button {
-        padding: 1rem 1rem;
+        padding: 1rem;
         border: 1px solid $color-light;
         font-size: 1.5rem;
         background: $color-dark;
         font-weight: bold;
-        color: $color-light;
+        color: $color-light !important;
         margin-left: 1rem;
         cursor: pointer;
         outline: none;

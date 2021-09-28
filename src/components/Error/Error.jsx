@@ -2,12 +2,12 @@
 import React from 'react';
 import styles from './Error.module.scss';
 
-const Error = ({error, runOnClickFunc}) =>{
+const Error = ({ error, runTryAgainFunc }) => {
 
     return (
         <div className={styles.body}>
             <p>{error}</p>
-            <button onClick={runOnClickFunc}>Try Again</button>
+            <button onClick={runTryAgainFunc}>Try Again</button>
         </div>
     )
 }

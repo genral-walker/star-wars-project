@@ -54,7 +54,7 @@ const HeadNav = () => {
                 })
 
             } else {
-                return <Error error={error} runOnClickFunc={() => setRefetch(prev => prev + 1)} />
+                return <Error error={error} runTryAgainFunc={() => setRefetch(prev => prev + 1)} />
             }
         } else {
             return <Loader />

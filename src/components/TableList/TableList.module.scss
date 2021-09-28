@@ -1,25 +1,27 @@
-
-@import '../../assets/scss/main.scss';
+@import "../../assets/scss/main.scss";
 
 .list {
-    .select {
-      margin: 2rem 0;
-      label {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-right: 1rem;
-      }
-
-      select {
-        background: $color-dark;
-        color: $color-light;
-        padding: 0.5rem 0;
-        outline: none;
-        border: 1px solid $color-light;
-      }
+  .select {
+    margin: 3rem 0 2rem;
+    label {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-right: 1rem;
     }
-    
 
+    select {
+      background: $color-dark;
+      color: $color-light;
+      padding: 0.5rem 0;
+      outline: none;
+      border: 1px solid $color-light;
+    }
+  }
+
+
+
+  .tableContainer {
+    overflow-x: auto;
     table {
       border-collapse: collapse;
       background: $color-light;
@@ -35,12 +37,18 @@
         letter-spacing: 2px;
         text-transform: uppercase;
         cursor: pointer;
+        @include media(400px) {
+          font-size: 1.3rem;
+        }
       }
 
       td {
         border: 1px solid $color-dark;
         font-size: 1.5rem;
         font-weight: 600;
+        @include media(400px) {
+          font-size: 1.3rem;
+        }
         &:not(:last-of-type) {
           text-transform: capitalize;
         }
@@ -51,7 +59,12 @@
           font-weight: 700;
           letter-spacing: 2px;
           text-transform: uppercase;
+          @include media(400px) {
+            font-size: 1.1rem;
+            font-weight: bolder;
+          }
         }
       }
     }
   }
+}

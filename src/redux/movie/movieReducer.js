@@ -17,8 +17,14 @@ const movieReducer = (state = INITIAL_STATE, { type, payload }) => {
                 ...state,
                 movieSelected: selectMovie(payload)
             }
+        // case movieActionTypes.MOVIE_SELECTED:
+        //     return {
+        //         ...state,
+        //         movieSelected: selectMovie(payload)
+        //     }
         default:
             return state
+
     }
 };
 

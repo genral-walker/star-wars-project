@@ -12,7 +12,7 @@ const Crawl = () => {
         <div className={styles.body}>
             {
                 movie ?
-                    <marquee width="100%" direction="up" scrollamount="1">
+                    <marquee width="100%" direction="up" scrollamount="1.5">
                         {movie.opening_crawl}
                     </marquee> :
                     <Loader />
