@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import "./App.scss";
 import logo from '../assets/images/logo.png';
@@ -10,7 +10,7 @@ import Crawl from './Crawl/Crawl';
 import TableList from './TableList/TableList';
 
 
-export default function App() {
+const App = () => {
 
   const movie = useSelector(state => state.movie.movieSelected)
 
@@ -32,7 +32,6 @@ export default function App() {
             </div>
         }
 
-
       </main>
 
       <Footer />
@@ -41,3 +40,4 @@ export default function App() {
   );
 }
 
+export default App;

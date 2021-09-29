@@ -31,16 +31,35 @@
         color: $color-dark;
         padding: 1rem;
       }
+
+
       th {
         border: 1px solid $color-dark;
         font-size: 1.5rem;
         letter-spacing: 2px;
         text-transform: uppercase;
         cursor: pointer;
+        transition: .3s;
         @include media(400px) {
           font-size: 1.3rem;
         }
+        &.active {
+          background: rgba($color-dark, .2);
+          span:last-of-type {
+          opacity: 1;
+          }
+        }
+
+        p {
+          pointer-events: none;
+          @include flex-between;
+          padding: 0;
+          span {
+            padding: 0;
+          }
+        }
       }
+
 
       td {
         border: 1px solid $color-dark;
@@ -68,3 +87,8 @@
     }
   }
 }
+
+// CLASSLIST
+.tableContainer th span:last-of-type {
+  opacity: 0;   
+}   

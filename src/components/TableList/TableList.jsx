@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import useFetch from '../../hooks/useFetch/useFetch';
 import Error from '../Error/Error';
@@ -7,21 +7,93 @@ import Loader from '../Loader/Loader';
 import styles from './TableList.module.scss';
 
 const TableList = () => {
+
     const movieSelected = useSelector(state => state.movie.movieSelected);
     const [refetch, setRefetch] = useState(0);
     const [data, error] = useFetch(movieSelected.characters, refetch);
     const [filteredGender, setFilteredGender] = useState();
+    const selectRef = useRef();
+    const tableHead = useRef();
+    const [isAscended, setIsAscended] = useState(true)
 
 
     const filterByGender = value => {
-        if (data) {
-            if (value === 'all') {
-                setFilteredGender(data)
-            } else {
-                const newCharacters = data.filter(({ gender }) => gender === value);
-                setFilteredGender(newCharacters);
+        if (filteredGender) {
+            // RESET ANIMATION UI ON TH ELEMENT
+            tableHead.current.childNodes.forEach(element => {
+                element.className = ''
+            });
+
+            if (data) {
+                if (value === 'all') {
+                    setFilteredGender(data)
+                } else {
+                    const newCharacters = data.filter(({ gender }) => gender === value);
+                    setFilteredGender(newCharacters);
+                }
             }
         }
+
+    }
+
+
+    const sortTableByHeader = event => {
+
+        if (filteredGender) {
+            // TOGGLE DIRECTION
+            setIsAscended(prev => !prev)
+
+            // TRANSITION
+            tableHead.current.childNodes.forEach(element => {
+                element.className = ''
+            });
+            event.target.className = styles.active
+
+
+            let filterByThead = [...filteredGender];
+
+            if (event.target.id === 'height') {
+
+                // TAKE OUT ANY OBJ IN ARRAY WHOSE HEIGHT VALUE ISN'T A NUMBER
+                const nanObjs = filterByThead.filter(({ height }) => {
+                    let chnageToNum = +height;
+                    return isNaN(chnageToNum)
+                });
+
+                // OBJS IN ARRAY WHOSE HEIGHT VALUE IS A NUMBER
+                const numObjs = filterByThead.filter(({ height }) => {
+                    let chnageToNum = +height;
+                    return !isNaN(chnageToNum)
+                });
+
+                // SORT BY NUMBER
+                numObjs.sort((a, b) => +(a.height) - +(b.height));
+
+                // JOIN OBJS back
+                filterByThead = [...numObjs, ...nanObjs]
+
+            } else {
+                const value = event.target.id;
+                // SORT BY TEXT VALUE
+                filterByThead.sort((a, b) => {
+                    if (a[value] < b[value]) {
+                        return -1;
+                    }
+                    if (a.[value] > b.[value]) {
+                        return 1;
+                    }
+                    return 0;
+                })
+            }
+
+            // CHECK TO SEE WHAT DIRECTION DATA SHOULD BE DISPLAYED: ASC OR DSC
+            if (!isAscended) {
+                filterByThead.reverse()
+            }
+
+            setFilteredGender(filterByThead);
+        }
+
     }
 
 
@@ -39,7 +111,7 @@ const TableList = () => {
             // CALCULATE HEIGHT IN CM, INCHES, FEET
             const totalHeightInCM = filteredForOnlyNumbers.reduce((accum, { height }) => {
                 const convertedHeight = +height;
-                return accum + convertedHeight;    
+                return accum + convertedHeight;
             }, 0);
 
             // Convert cm to Feet
@@ -51,6 +123,7 @@ const TableList = () => {
         }
 
     }
+
 
 
     const returnCharactersInfo = () => {
@@ -67,9 +140,9 @@ const TableList = () => {
 
                     <tr>
                         <td>
-                            <span>Total Visible Characters:</span> {filteredGender.length}
+                            <span>Total Characters:</span> {filteredGender.length}
                         </td>
-                        <td colSpan='2'> <span>Total heights:</span> {sumTotalHeight()}</td>
+                        <td colSpan='2'> <span>Total Heights:</span> {sumTotalHeight()}</td>
                     </tr>
                 </>)
             } else {
@@ -82,7 +155,9 @@ const TableList = () => {
     }
 
 
+
     useEffect(() => {
+
         // THIS ENABLES THE API CALL AGAIN WHENEVR SELECTED MOVIE CHNAGES
         if (data || error) {
             setRefetch(prev => prev + 1);
@@ -90,11 +165,19 @@ const TableList = () => {
     }, [movieSelected])
 
 
+
     useEffect(() => {
-        // SET FILTEREDGENDER (THIS IS WHAT WE WILL BE RENDERING FROM)
+        // RESET SELECTED VALUE FOR SELECT AND TH ELEMENT
+        selectRef.current.value = 'all';
+        tableHead.current.childNodes.forEach(element => {
+            element.className = ''
+        });
+
+        // THIS IS WHAT WE WILL BE RENDERING FROM
         setFilteredGender(data)
     }, [data])
 
+    
 
     return (
         <section className={styles.list}>
@@ -102,28 +185,32 @@ const TableList = () => {
             <div className={styles.select} onChange={(e) => filterByGender(e.target.value)}>
                 <label for="pet-select">Select Gender:</label>
 
-                <select id="pet-select">
+                <select id="pet-select" ref={selectRef}>
                     <option value="all">All</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="hermaphrodite">Hermaphrodite</option>
                 </select>
             </div>
-
+            {/* <span></span> <span></span> */}
             <div className={styles.tableContainer}>
                 <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>Gender</th>
-                        <th>Height</th>
+                    <tr onClick={sortTableByHeader} ref={tableHead}>
+                        <th id='name'>
+                            <p><span>Name</span> {isAscended ? <span>&#9650;</span> : <span>&#9660;</span>}</p>
+                        </th>
+                        <th id='gender'>
+                            <p><span>Gender</span> {isAscended ? <span>&#9650;</span> : <span>&#9660;</span>}</p>
+                        </th>
+                        <th id='height'><p>
+                            <span>Height</span> {isAscended ? <span>&#9650;</span> : <span>&#9660;</span>}</p>
+                        </th>
                     </tr>
 
                     {returnCharactersInfo()}
 
                 </table>
             </div>
-
-
         </section>
     )
 }

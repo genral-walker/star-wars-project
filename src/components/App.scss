@@ -38,10 +38,6 @@ body {
   color: $color-light;
 }
 
-a {
-  text-decoration: none;
-  color: currentColor;
-}
 
 li {
   list-style: none;
@@ -51,12 +47,12 @@ li {
 
 
 .main {
-  padding: 4rem 4rem 0;
+  padding: 4rem 4rem 2rem;
   @include media(500px) {
-    padding: 4rem 1.5rem 0;
+    padding: 4rem 1.5rem 2rem;
   }
   @include media(370px) {
-    padding: 4rem 1rem 0;
+    padding: 4rem 1rem 2rem;
   }
 
 

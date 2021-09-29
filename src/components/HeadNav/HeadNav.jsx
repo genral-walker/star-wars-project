@@ -42,6 +42,7 @@ const HeadNav = () => {
         e.target.className = styles.active
     }
 
+    
     const returnMovies = () => {
 
         if (data || error) {
