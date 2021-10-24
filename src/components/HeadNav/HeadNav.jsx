@@ -67,7 +67,7 @@ const HeadNav = () => {
         <nav className={styles.nav}>
             <div className={styles.accordion} onClick={toggleAccordion}>
                 <h2>Star Wars Movies</h2>
-                <span className={accordion && styles.hide}></span>
+                <span className={accordion ? styles.hide : ''}></span>
             </div>
 
             <div className={styles.contents} ref={listRef}>

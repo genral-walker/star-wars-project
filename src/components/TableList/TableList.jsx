@@ -6,11 +6,13 @@ import Error from '../Error/Error';
 import Loader from '../Loader/Loader';
 import styles from './TableList.module.scss';
 
+
+
 const TableList = () => {
 
     const movieSelected = useSelector(state => state.movie.movieSelected);
     const [refetch, setRefetch] = useState(0);
-    const [data, error] = useFetch(movieSelected.characters, refetch);
+    const [fetchedData, error] = useFetch(movieSelected.characters, refetch);
     const [filteredGender, setFilteredGender] = useState();
     const selectRef = useRef();
     const tableHead = useRef();
@@ -24,11 +26,11 @@ const TableList = () => {
                 element.className = ''
             });
 
-            if (data) {
+            if (fetchedData) {
                 if (value === 'all') {
-                    setFilteredGender(data)
+                    setFilteredGender(fetchedData)
                 } else {
-                    const newCharacters = data.filter(({ gender }) => gender === value);
+                    const newCharacters = fetchedData.filter(({ gender }) => gender === value);
                     setFilteredGender(newCharacters);
                 }
             }
@@ -79,7 +81,7 @@ const TableList = () => {
                     if (a[value] < b[value]) {
                         return -1;
                     }
-                    if (a.[value] > b.[value]) {
+                    if (a[value] > b[value]) {
                         return 1;
                     }
                     return 0;
@@ -159,7 +161,7 @@ const TableList = () => {
     useEffect(() => {
 
         // THIS ENABLES THE API CALL AGAIN WHENEVR SELECTED MOVIE CHNAGES
-        if (data || error) {
+        if (fetchedData || error) {
             setRefetch(prev => prev + 1);
         }
     }, [movieSelected])
@@ -174,8 +176,8 @@ const TableList = () => {
         });
 
         // THIS IS WHAT WE WILL BE RENDERING FROM
-        setFilteredGender(data)
-    }, [data])
+        setFilteredGender(fetchedData)
+    }, [fetchedData])
 
     
 
@@ -183,27 +185,28 @@ const TableList = () => {
         <section className={styles.list}>
 
             <div className={styles.select} onChange={(e) => filterByGender(e.target.value)}>
-                <label for="pet-select">Select Gender:</label>
+                <label>Select Gender:</label>
 
-                <select id="pet-select" ref={selectRef}>
+                <select ref={selectRef}>
                     <option value="all">All</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="hermaphrodite">Hermaphrodite</option>
                 </select>
             </div>
-            {/* <span></span> <span></span> */}
+            
+            
             <div className={styles.tableContainer}>
                 <table>
                     <tr onClick={sortTableByHeader} ref={tableHead}>
                         <th id='name'>
-                            <p><span>Name</span> {isAscended ? <span>&#9650;</span> : <span>&#9660;</span>}</p>
+                            <p><span>Name</span> {isAscended ? <span>&#9660;</span> : <span>&#9650;</span>}</p>
                         </th>
                         <th id='gender'>
-                            <p><span>Gender</span> {isAscended ? <span>&#9650;</span> : <span>&#9660;</span>}</p>
+                            <p><span>Gender</span> {isAscended ? <span>&#9660;</span> : <span>&#9650;</span>}</p>
                         </th>
                         <th id='height'><p>
-                            <span>Height</span> {isAscended ? <span>&#9650;</span> : <span>&#9660;</span>}</p>
+                            <span>Height</span> {isAscended ? <span>&#9660;</span> : <span>&#9650;</span>}</p>
                         </th>
                     </tr>
 
