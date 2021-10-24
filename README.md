@@ -1,4 +1,15 @@
 
+# Star wars API Manipulation Project
 
-- Create a small app using React that lists the names of Star Wars movies in a dropdown
-- Also create opening crawl of the selected movie below the selection along with a list of the
+
+## Built With:
+
+- React
+- SCSS
+- Redux
+- [Star Wars API](https://swapi.dev/api/)
+
+
+See [the live work here](https://starwars-project.netlify.app/).
+
+
